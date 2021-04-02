@@ -13,7 +13,9 @@ export function NotificationsProvider({ children }: Props) {
   const [notifications, dispatch] = useReducer(notificationReducer, storage ?? DEFAULT_NOTIFICATIONS)
 
   useEffect(() => {
-    setStorage(notifications)
+    if (typeof window !== 'undefined') {
+      setStorage(notifications)
+    }
   }, [notifications])
 
   const addNotification = useCallback(
