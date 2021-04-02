@@ -1,7 +1,7 @@
 Getting started
 ===============
 
-Installation
+Installation 
 ------------
 
 To start working with useDapp you need to have working React environment.
@@ -30,7 +30,7 @@ Below is a simple example:
 .. code-block:: javascript
 
   const config: Config = {
-    readOnlyChain: ChainId.Mainnet,
+    readOnlyChainId: ChainId.Mainnet,
     readOnlyUrls: {
       [ChainId.Mainnet]: 'https://mainnet.infura.io/v3/62687d1a985d4508b2b7a24827551934',
     },
@@ -97,6 +97,7 @@ Then you need to activate the provider using **activateBrowserWallet**. It's bes
 
 After the activation (i.e. user connects to a wallet like MetaMask) the component will show the user's address.
 
+If you need to use another connector than a browser wallet, use the `activate` method from `useEthers`. See the `web3-react <https://github.com/NoahZinsmeister/web3-react/tree/v6/docs#overview>` doc for that one. 
 
 Ether balance
 -------------

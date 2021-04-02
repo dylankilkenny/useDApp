@@ -6,7 +6,9 @@ import { BlockNumberProvider } from './blockNumber/provider'
 import { ChainStateProvider } from './chainState'
 import { useConfig } from './config/context'
 import { EthersProvider } from './EthersProvider'
+import { NotificationsProvider } from './notifications/provider'
 import { ReadOnlyProviderActivator } from './ReadOnlyProviderActivator'
+import { TransactionProvider } from './transactions/provider'
 
 interface DAppProviderProps {
   children: ReactNode
@@ -34,7 +36,11 @@ function DAppProviderWithConfig({ children }: WithConfigProps) {
         {readOnlyChainId && readOnlyUrls && (
           <ReadOnlyProviderActivator readOnlyChainId={readOnlyChainId} readOnlyUrls={readOnlyUrls} />
         )}
-        <ChainStateProvider multicallAddresses={multicallAddressesMerged}>{children}</ChainStateProvider>
+        <ChainStateProvider multicallAddresses={multicallAddressesMerged}>
+          <NotificationsProvider>
+            <TransactionProvider>{children}</TransactionProvider>
+          </NotificationsProvider>
+        </ChainStateProvider>
       </BlockNumberProvider>
     </EthersProvider>
   )
